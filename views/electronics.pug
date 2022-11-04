@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - let results=[{electronics_product:"Fan", electronics_price:50, electronics_size:'large'},{electronics_product:"Blender", electronics_price:60, electronics_size :'small'},{electronics_product :"Hair-Dryer", electronics_price :70, electronics_size:"medium"}]
+  div(class="container-fluid")
+  div(class="row")
+    each value,index in results
+      div(class="col-sm-2" onclick=`buy(${index})`)  #{value.electronics_product} electronics , price #{value.electronics_price}, with size #{value.electronics_size}
+  script.
+    function buy(index)
+    {
+      alert(`Your purchased Item ${index+1}`)
+    }
