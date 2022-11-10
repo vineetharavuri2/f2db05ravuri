@@ -2,13 +2,13 @@ extends layout
 
 block content
   h1= title
-  - let results=[{electronics_product:"Fan", electronics_price:50, electronics_size:'large'},{electronics_product:"Blender", electronics_price:60, electronics_size :'small'},{electronics_product :"Hair-Dryer", electronics_price :70, electronics_size:"medium"}]
-  div(class="container-fluid")
-  div(class="row")
-    each value,index in results
-      div(class="col-sm-2" onclick=`buy(${index})`)  #{value.electronics_product} electronics , price #{value.electronics_price}, with size #{value.electronics_size}
+  - var results = electronics_results
+  div.container-fluid 
+    div.row 
+        each item, index in results
+            div.col-sm-2(onclick=`buy(${index})`) electronics product: #{item["electronics_product"]} <br> electronics price: #{item["electronics_price"]} <br> electronics size: #{item["electronics_size"]}
+
   script.
-    function buy(index)
-    {
-      alert(`Your purchased Item ${index+1}`)
+    function buy(index) {
+      alert("You purchased item " + index)
     }
