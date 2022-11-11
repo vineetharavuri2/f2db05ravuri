@@ -23,9 +23,16 @@ exports.electronics_view_all_Page = async function(req, res) {
     }   
 }; 
 
-// for a specific electronics. 
-exports.electronics_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: electronics detail: ' + req.params.id); 
+// for a specific Costume. 
+exports.electronics_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await electronics.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
 
  // Handle electronics create on POST. 
@@ -68,3 +75,24 @@ exports.electronics_view_all_Page = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+// Handle Costume update form on PUT. 
+exports.electronics_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await electronics.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.electronics_product) toUpdate.electronics_product = req.body.electronics_product; 
+        if(req.body.electronics_price) toUpdate.electronics_price = req.body.electronics_price; 
+        if(req.body.electronics_size) toUpdate.electronics_size = req.body.electronics_size; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+}; 
+ 
