@@ -3,6 +3,44 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+
+
 a {
   color: #00B7FF;
+}
+.electronicsAttr {
+  background-color: aquamarine;
+  width: 120px;
+}
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+
+a {
+  color: #00B7FF;
+}
+
+
+
+b{
+    padding-left: 545px;
+}
+.c{
+  padding-left: 500px;
+}
+.electronicsAttr {
+  background-color: rgb(127, 255, 232);
+  width: 120px;
+  text-shadow: 2px 2px #00ffea ;
+}
+.d {
+text-align: center;
+padding: 10px;
+background-color: rgb(237, 56, 56);
+}
+.e {
+background-color: rgba(32, 237, 80, 0.863);
 }

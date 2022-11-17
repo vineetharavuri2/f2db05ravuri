@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let electronicsid = toShow._id 
+    - let electronics_product = toShow.electronics_product
+    - let electronics_price = toShow.electronics_price
+    - let electronics_size = toShow.electronics_size 
+    - let actionid = "/resource/electronics/" + electronicsid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='elctronicsAttr mr-3') electronics ID is: 
+        div #{electronicsid} 
+      div.row 
+        div(class='electronicsAttr mr-3') electronics Type is: 
+        div #{electronics_product} 
+      div.row 
+        div(class='electronicsAttr mr-3') electronics Size is: 
+        div #{electronics_size} 
+      div.row 
+        div(class='electronicsAttr mr-3') electronics price is: 
+        div #{electronics_price} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the electronics collection 
+      window.location.href='/electronics' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/electronics' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
