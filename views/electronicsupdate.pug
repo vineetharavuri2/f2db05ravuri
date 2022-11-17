@@ -2,7 +2,10 @@ extends layout
  
 block content 
   h1= title 
- 
+  
+ if (toShow == null) 
+    h2 No instance to Update
+  else
   - let electronicsid = toShow._id 
   - let electronics_product  = toShow.electronics_product 
   - let electronics_price = toShow.electronics_price 
