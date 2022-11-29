@@ -1,5 +1,5 @@
 const mongoose = require("mongoose") 
-const electronicsSchema = mongoose.Schema({ 
+const electronicSchema = mongoose.Schema({ 
     electronics_product : {
                        type:String,
                        required:true
