@@ -2,13 +2,22 @@ extends layout
 
 block content
   h1= title
+  - let destination = `dispatch(\"/electronics/create\")` 
+   button.btn( class="btn-primary ml-1", onclick= destination) Create
+
   - let results=[{electronics_product:"Fan", electronics_price:50, electronics_size:'large'},{electronics_product:"Blender", electronics_price:60, electronics_size :'small'},{electronics_product :"Hair-Dryer", electronics_price :70, electronics_size:"medium"}]
   div(class="container-fluid")
     div(class="row m-1")
         each item,index in results
-            - let destination = `dispatch(\"/electronics/update?id=${item._id}\")` 
+             
+            - let destinationupdate = `dispatch(\"/electronics/update?id=${item._id}\")` 
+            - let destinationdelete = `dispatch(\"/electronics/delete?id=${item._id}\")`
+            - let destinationdetail = `dispatch(\"/electronics/detail?id=${item._id}\")` 
+
             div(class="col-sm-2" onclick=`buy(${index})`)  #{item.electronics_product} electronics , price #{item.electronics_price}, with size #{item.electronics_size}
-            button.btn( class="btn-primary ml-1", onclick= destination) Update
+            button.btn( class="btn-primary ml-1", onclick= destinationupdate) Update
+            button.btn( class="btn-primary ml-1", onclick= destinationdelete) Delete
+            button.btn( class="btn-primary ml-1", onclick= destinationdetail) Detail
 
   script.
     function buy(index){

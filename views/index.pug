@@ -1,17 +1,28 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
-  p Dad's little princess
-  button(type="button",class="btn btn-secondary", onclick ="doBump()") press Me
-  div#bump Bump the count
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/electronicss") Take me to electronics
+    br 
+    a(href="/logout") Logout 
+//- block content
+//-   h1= title
+//-   p Welcome to #{title}
+//-   p Dad's little princess
+//-   button(type="button",class="btn btn-secondary", onclick ="doBump()") press Me
+//-   div#bump Bump the count
 
-  script.  
-    var count = 0
-    var bump = 1
-    function doBump() {
-      count = count + bump 
-      bump = bump + 1
-      document.getElementById("bump").innerHTML = "Count "+ count +" Bump "+bump;
-    }
+//-   script.  
+//-     var count = 0
+//-     var bump = 1
+//-     function doBump() {
+//-       count = count + bump 
+//-       bump = bump + 1
+//-       document.getElementById("bump").innerHTML = "Count "+ count +" Bump "+bump;
+//-     }
